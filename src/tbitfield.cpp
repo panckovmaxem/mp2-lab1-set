@@ -29,7 +29,7 @@ TBitField::TBitField(const TBitField &bf) // конструктор копиро
 	}
 }
 
-TBitField::~TBitField()
+TBitField::~TBitField() //деструктор 
 {
 	delete[]pMem;
 }
