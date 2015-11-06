@@ -89,26 +89,78 @@ TSet TSet::operator+(const TSet &s) // объединение
 
 TSet TSet::operator+(const int Elem) // объединение с элементом
 {
+	TSet tmp(BitField);
+	tmp.InsElem(Elem);
+	return tmp;
 }
 
 TSet TSet::operator-(const int Elem) // разность с элементом
 {
+	TSet tmp(BitField);
+	tmp.DelElem(Elem);
+	return tmp;
 }
 
 TSet TSet::operator*(const TSet &s) // пересечение
 {
+	TSet tmp(BitField & s.BitField);
+	return tmp;
 }
 
 TSet TSet::operator~(void) // дополнение
 {
+	TSet tmp(~BitField); 
+	return tmp;
 }
 
 // перегрузка ввода/вывода
 
 istream &operator>>(istream &istr, TSet &s) // ввод
 {
+	char str;
+	int tmp;
+	do
+	{
+		istr >> str;
+	} while (str != '{');
+	do
+	{
+		istr >> tmp;
+		s.InsElem(tmp);
+		do
+		{
+			istr >> str;
+		} while ((str != ',') && (str != '}'));
+	} while (str != '}');
+	return istr;
 }
 
 ostream& operator<<(ostream &ostr, const TSet &s) // вывод
 {
+	int mx = s.MaxPower;
+	bool flag = false;
+	for (int i = 0; i < mx; i++)
+	{
+		if (s.IsMember(i))
+		{
+			flag = true;
+		}
+	}
+	if (flag)
+	{
+		ostr << "{";
+		for (int i = 0; i < mx; i++)
+		{
+			if (s.IsMember(i))
+			{
+				ostr << i << ";";
+			}
+			ostr << "}";
+		}
+	}
+	else
+	{
+		ostr << '0';
+	}
+	return ostr;
 }
