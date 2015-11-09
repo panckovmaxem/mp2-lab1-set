@@ -15,7 +15,7 @@ using namespace std;
 typedef unsigned int TELEM;
 
 class TBitField
-{ 
+{
 private:
   int  BitLen; // длина битового поля - макс. к-во битов
   TELEM *pMem; // память для представления битового поля
