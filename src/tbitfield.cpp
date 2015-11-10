@@ -190,11 +190,11 @@ TBitField TBitField::operator&(const TBitField &bf) // операция "и"
 
 TBitField TBitField::operator~(void) // отрицание
 {
-	unsigned int dl = BitLen;
+	int dl = BitLen;
 	TBitField tmp(dl);
 	for (int i = 0; i < MemLen; i++)
 	{
-		tmp.pMem[i] = ~pMem[i];
+		
 	}
 	return tmp;
 }
@@ -203,7 +203,8 @@ TBitField TBitField::operator~(void) // отрицание
 
 istream &operator>>(istream &istr, TBitField &bf) // ввод
 {
-	int ch,i=0;
+	int ch;
+	int i = 0;
 	do
 	{
 		istr >> ch;
