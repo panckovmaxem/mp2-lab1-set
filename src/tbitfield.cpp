@@ -192,9 +192,16 @@ TBitField TBitField::operator~(void) // отрицание
 {
 	int dl = BitLen;
 	TBitField tmp(dl);
-	for (int i = 0; i < MemLen; i++)
+	for (int i = 0; i < BitLen; i++)
 	{
-		
+		if (GetBit(i) == 0)
+		{
+			tmp.SetBit(i);
+		}
+		if (GetBit(i) == 1)
+		{
+			tmp.ClrBit(i);
+		}
 	}
 	return tmp;
 }
